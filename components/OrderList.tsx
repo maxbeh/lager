@@ -8,25 +8,19 @@ import { Base, Typography} from "../styles/index.js";
 export default function OrderList({ route, navigation, setProducts }) {
     const { reload } = route.params || false;
     const [allOrders, setAllOrders] = useState([]);
-    // console.log(reload);
     if (reload) {
-        // console.log("in reload")
         reloadOrders();
     }
 
     async function reloadOrders() {
-        // console.log("Reloading orders")
         setAllOrders(await orderModel.getOrders());
         setProducts( await productModel.getProducts());
         navigation.navigate('Order List', { reload: false});
     }
-    // console.log("above useeffect")
     useEffect(() => {
         reloadOrders();
     }, []);
 
-    // console.log("filtering orders on ny");
-    // console.log(JSON.stringify(allOrders));
     const listOfOrders = allOrders
         .filter(order => order.status === "Ny")
         .map((order, index) => {
@@ -60,11 +54,3 @@ export default function OrderList({ route, navigation, setProducts }) {
         </View>
     );
 }
-
-
-
-// useEffect(() => {
-//     fetch(`${config.base_url}/orders?api_key=${config.api_key}`)
-//       .then(response => response.json())
-//       .then(result => setAllOrders(result.data));
-// }, []);

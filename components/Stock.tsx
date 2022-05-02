@@ -5,7 +5,6 @@ import productModel from "../models/products.ts";
 import { Base, Typography} from "../styles/index.js";
 
 function AllProducts({products, setProducts}) {
-  // const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch(`${config.base_url}/products?api_key=${config.api_key}`)
@@ -17,10 +16,10 @@ function AllProducts({products, setProducts}) {
 
 function StockList({products, setProducts}) {
   useEffect(async () => {
-    console.log("calling productmodel")
+    // console.log("calling productmodel")
     setProducts(await productModel.getProducts());
   }, []);
-  console.log("Im at Stocklist");
+  // console.log("Im at Stocklist");
   const list = products.map((product, index) => {
     return <Text
             key={index}

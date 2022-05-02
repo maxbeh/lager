@@ -23,3 +23,8 @@ export const delimiter = {
     marginBottom: 28,
     textAlign: "center",
 }
+
+export const small = {
+    fontSize: 15,
+    marginBottom: 28,
+}

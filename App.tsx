@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Home from "./components/Home.tsx";
 import Pick from "./components/Pick.tsx";
+import Deliveries from "./components/Deliveries.tsx";
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useState, useEffect } from 'react';
@@ -14,6 +16,7 @@ const Tab = createBottomTabNavigator();
 const routeIcons = {
   "Lager": "home",
   "Plock": "list",
+  "Inleveranser": "file-tray-stacked-sharp",
 };
 
 export default function App() {
@@ -37,6 +40,9 @@ export default function App() {
             </Tab.Screen>
             <Tab.Screen name="Plock">
               {() => <Pick products={products} setProducts={setProducts} />}
+            </Tab.Screen>
+            <Tab.Screen name="Inleveranser">
+              {() => <Deliveries products={products} setProducts={setProducts}/>}
             </Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>

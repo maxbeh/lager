@@ -7,19 +7,15 @@ import { Base, Typography} from "../styles/index.js";
 
 export default function PickList({ route, navigation, setProducts, productsList, setProductsList }) {
     const { order } = route.params;
-    // console.log(order)
-    // const [productsList, setProductsList] = useState([]);
 
     useEffect(async () => {
         setProductsList(await productModel.getProducts());
     }, []);
 
     async function pick() {
-        await orderModel.pickOrder(order); /* should remove order*/
-        /*HERE PROBLEM THAT SETPRODUCTS IT NOT PASSED ON FROM PARENT*/
-        setProducts(await productModel.getProducts()); /* updates stock after above call*/
+        await orderModel.pickOrder(order);
+        setProducts(await productModel.getProducts());
         navigation.navigate("Order List", { reload: true });
-        // , { reload: true }
     }
 
     const orderItemsList = order.order_items.map((item, index) => {
@@ -31,11 +27,6 @@ export default function PickList({ route, navigation, setProducts, productsList,
             </Text>;
     });
     function checkAvailability() {
-        // let orderList = order.order_items.map((item, index) => {
-        //     return item
-        // });
-        // console.log("STARTING OVER")
-        // console.log(order.order_items);
         let returnValue = <Button title="Plocka order" onPress={pick} />;
         for (let order_item of order.order_items) {
             let productExists = productsList.filter(product => product.name === order_item.name)[0];
@@ -48,7 +39,6 @@ export default function PickList({ route, navigation, setProducts, productsList,
         }
         return returnValue
     };
-    // let pickOrNotPick =
     return (
         <View style={Base.container}>
             <Text style={{...Typography.normal}}>{order.name}</Text>

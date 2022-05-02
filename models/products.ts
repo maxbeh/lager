@@ -5,9 +5,6 @@ import initialProducts from "../config/initialproducts.ts";
 const products = {
     getProducts: async function getProducts(productId = "") {
         let path = `${config.base_url}/products/${productId}?api_key=${config.api_key}`;
-        // if (productId) {
-        //     path = `${config.base_url}/products/${productId}?api_key=${config.api_key}`;
-        // }
         const response = await fetch(path);
         // console.log(response.status);
         const result = await response.json();

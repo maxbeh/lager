@@ -10,7 +10,7 @@ export default function Pick(props) {
     const [productsList, setProductsList] = useState([]);
     return (
         <Stack.Navigator initialRouteName="Order List" style={Base.base}>
-            <Stack.Screen name="Order List" style={Base.base}>
+            <Stack.Screen name="Order List">
             {(screenProps) => <OrderList {...screenProps}
                                 setProducts={props.setProducts}
                                 />}
